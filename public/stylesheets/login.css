@@ -22,7 +22,7 @@
 
 body {
     color: white; 
-    background-image: url(./img/beerbackground.jpg); 
+    background-image: url('/img/beerbackground.jpg'); 
     background-position: center top;  
     background-repeat: no-repeat;     
 }
