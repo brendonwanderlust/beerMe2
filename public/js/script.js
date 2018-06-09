@@ -16,9 +16,9 @@ $(function () {
                 api.getBeersForBrewery(brewery.name)
                     .then(function (beers) {
                         beers.forEach(function (beer) {
-                            beerList.push(beer);
-                            sidebar.renderSideBar(beerList);
+                            beerList.push(beer);                            
                         });
+                        sidebar.renderSideBar(beerList);
                     })
                     .catch(function (error) {
                         console.log("broken inside second promise. Error: " + error);
