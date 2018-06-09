@@ -1,0 +1,33 @@
+.container h1 {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.login {
+    width: 400px;
+}
+
+.other-logins {
+    margin-top: 30px;
+}
+
+.facebook {
+    margin-bottom: 15px;
+}
+
+.btn-submit {
+    margin-top: 10px;
+   justify-content: center;
+}
+
+body {
+    color: white; 
+    background-image: url(./img/beerbackground.jpg); 
+    background-position: center top;  
+    background-repeat: no-repeat;     
+}
+
+nav img {
+    height: 50px;
+    width: auto;
+}

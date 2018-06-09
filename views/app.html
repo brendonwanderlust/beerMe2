@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="app.css">
+    <title>BeerMe!</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZ7pKU7qzipzlkNjcXGeFh6ATwK_1Ccu4&libraries=places"></script>
+    <!-- <script type="text/javascript" src="Map.js"></script> -->
+    <script type="text/javascript" src="Map.js"></script>
+    <script type="text/javascript" src="Api.js"></script>
+    <script type="text/javascript" src="beers.js"></script>
+    <script type="text/javascript" src="sidebar.js"></script>
+    
+    <script type="text/javascript" src="script.js"></script>
+    
+</head>
+
+<body>
+    <nav class="navbar fixed-top navbar-expand-sm navbar-dark bg-dark">
+        <a class="navbar-brand p-0 text-warning" href="#"><img src="img/beerpint.png" width="50" height="50" alt="BeerMe! logo"><span class="p-3" style="font-size: 1.5rem;">BeerMe!</span></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container-fluid full-height">
+        <div class="row h-100">
+            <div class="col-lg-9 p-0">
+                <div id="map"></div>
+            </div>
+            <div class="col-lg-3 mt-3">
+                <form>
+                    <input id="myInput" onkeyup="search()" class="form-control" type="search" name="beermesearch" placeholder="Find a brew...">
+                </form>
+                <div id="mySidebar" class="search-results"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function search() {
+            var input, filter, sidebar, card, td, td2;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            sidebar = document.getElementById("mySidebar");
+            card = sidebar.getElementsByClassName("beer");
+            displayBreweryArray = [];
+
+            // Loop through all sidebar cards, and hide those who don't match the search query
+            for (let i = 0; i < card.length; i++) {
+                td = card[i].getElementsByClassName("td")[0];
+                td2 = card[i].getElementsByClassName("td")[1];
+                if (td) {
+                    if (td.innerHTML.toUpperCase().indexOf(filter) > -1 || td2.innerHTML.toUpperCase().indexOf(filter) > -1 ) {
+                        card[i].style.display = "";
+                    } else {
+                        card[i].style.display = "none";
+                    };
+                };
+            };
+
+            // for (let v = 0; v < card.length; v++) {
+            //     if (card[v].style.display == "") {
+            //      console.log(card[v])
+            //     }
+                
+            // };
+            
+
+        };
+    </script>
+</body>
+
+</html>
