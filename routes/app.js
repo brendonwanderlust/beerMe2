@@ -1,18 +1,12 @@
-const express = require('express');
-var ba = require('beeradvocate-api');
-const app = express();
+var express = require('express');
+var router = express.Router();
 
-
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
+/* GET home page. */
+router.get('/', function(req, res, next) {
+  res.render('app', {
+    title: 'BeerMe',
+    bodyclass: 'app'
+  });
 });
 
-app.get('/beers', function(req, res) {
-    ba.beerSearch(req.query.search, function(beers) {
-        res.send(beers);
-    });
-});
-
-app.listen(3000, () => console.log('Beer API listening on localhost:3000/beers'))
+module.exports = router;

@@ -2,6 +2,10 @@ html, body {
     height:  100%;
 }
 
+body.page-app {
+    background-image: none;
+}
+
 .beer {
     margin-top: 1rem;
 }
