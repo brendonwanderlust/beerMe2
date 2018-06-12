@@ -3,9 +3,13 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const User = require('./models/user');
+const FavoriteBeers = require('./models/favoriteBeer');
+const FavoriteBreweries = require('./models/favoriteBrewery');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+// const setupAuth = require('./auth') //i added this
 
 var appRouter = require('./routes/app');
 
@@ -20,6 +24,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// setupAuth(app);
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
