@@ -2,7 +2,7 @@ const passport = require('passport');
 const GitHubStrategy = require('passport-github').Strategy;
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
-const User = require('./models/user');
+const User = require('./models');
 
 const setupAuth = (app) => {
     app.use(cookieParser());
@@ -18,7 +18,7 @@ const setupAuth = (app) => {
         clientSecret: "93a08af44ee17274d6b4b1dd97e1686dbc5db6fd",
         callbackURL: "http://localhost:3000/github/auth"
     }, (accessToken, refreshToken, profile, done) => {
-        User.findOrCreate({
+        models.User.findOrCreate({
             where: {
                 github_id: profile.id
             }
@@ -65,7 +65,5 @@ const ensureAuthenticated  = (req, res, next) => {
     res.redirect('/login');
 }
 
-module.exports = {
-    setupAuth,
-    ensureAuthenticated,
-};
+module.exports = setupAuth;
+module.exports.ensureAuthenticated = ensureAuthenticated;
