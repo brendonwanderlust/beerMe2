@@ -6,9 +6,6 @@ var logger = require('morgan');
 
 var models = require('./models');
 var hbs = require('express-handlebars');
-const Sequelize = require('sequelize'); //added sequelize lines 10 + 11
-const sequelize = new Sequelize('postgres://postgres@localhost:3000/beerMe2'); 
-
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
