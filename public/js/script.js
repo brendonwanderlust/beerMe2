@@ -11,7 +11,9 @@ $(function () {
             let mapped = new Map(breweries);
             mapped.render(breweries);
             return breweries
-        }).then(function (breweries) {
+        })
+        
+        .then(function (breweries) {
             breweries.forEach(function (brewery) {
                 api.getBeersForBrewery(brewery.name)
                     .then(function (beers) {
