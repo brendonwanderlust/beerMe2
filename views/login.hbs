@@ -41,19 +41,26 @@
     </div>
 
     <!-- Other logins -->
-
+    {{#if isLoggedIn}}
     <div class="other-logins">
-        <div class="facebook">
+        <div class="github">
             <a href="/app">
-                <button type="button" class="btn btn-lg">Login with Facebook</button>
+                <button type="button" class="btn btn-lg">Login with GitHub</button>
             </a>
         </div>
-
-        <div class="google">
+    {{/if}}
+        {{!-- <div class="google">
             <a href="/app">
                 <button type="button" class="btn btn-lg">Login with Google</button>
             </a>
-        </div> --}}
+        </div>  --}}
+    {{#unless isLoggedIn}}
+    
+    {{/unless}}
+   
+
+        
+        
 
     </div>
 </div>
