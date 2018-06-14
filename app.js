@@ -13,6 +13,7 @@ var usersRouter = require('./routes/users');
 // const setupAuth = require('./auth') //i added this
 
 var appRouter = require('./routes/app');
+var favRouter = require('./routes/favorites');
 
 var app = express();
 
@@ -32,6 +33,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/app', appRouter);
+app.use('/favorites', favRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
