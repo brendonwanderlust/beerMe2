@@ -6,6 +6,18 @@ body.page-app {
     background-image: none;
 }
 
+body.page-app svg {
+    color: black;
+}
+
+.card-title {
+    color: darkslategray;
+}
+
+.card-subtitle {
+    color: red;
+}
+
 .beer {
     margin-top: 1rem;
 }
