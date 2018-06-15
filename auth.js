@@ -1,8 +1,9 @@
 const passport = require('passport');
 const GitHubStrategy = require('passport-github').Strategy;
+const LocalStrategy = require('passport-local').Strategy;
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
-const User = require('./models');
+const models = require('./models');
 
 const setupAuth = (app) => {
     app.use(cookieParser());
@@ -18,9 +19,14 @@ const setupAuth = (app) => {
         clientSecret: "93a08af44ee17274d6b4b1dd97e1686dbc5db6fd",
         callbackURL: "http://localhost:3000/github/auth"
     }, (accessToken, refreshToken, profile, done) => {
+        console.log(profile);
         models.User.findOrCreate({
             where: {
                 github_id: profile.id
+            },
+            defaults: {
+                github_id: profile.id,
+                username: profile.username
             }
         })
         .then(result => {
@@ -29,9 +35,38 @@ const setupAuth = (app) => {
         .catch(done);
     }))
 
+    passport.use(new LocalStrategy({
+        usernameField: 'email',
+        passwordField: 'password'
+    },
+    function(email, password, done) {
+        models.User.findOne({
+            where: {
+                email: email
+            }
+        })
+        .then(function (user) { // Sequelize return a promise with user in callback
+            if (user == null) { // Checking if user exsists
+                return done(null, false)  // Standerd Passport callback
+            }
+
+            if (password == user.password) { // use your password hash comparing logic here for security
+                return done(null, user) // Standerd Passport callback
+            }
+            return done(null, false) // Standerd Passport callback
+        })
+        .catch(done);
+    }
+    ));
+
     passport.serializeUser((user, done) => {
-        done(null, user.id)
+        done(null, {
+            id: user.id,
+            firstname: 'test',
+            lastname: 'example',
+        })
     });
+
 
     passport.deserializeUser((id, done) => {
         done(null, id);
@@ -41,7 +76,12 @@ const setupAuth = (app) => {
 
     app.use(passport.session());
 
-    app.get('/login', passport.authenticate('github'));
+    app.get('/login', (req, res, next) => {
+        res.render('login',{
+            error: req.query.error
+        });
+    })
+    app.get('/login/github', passport.authenticate('github'));
     app.get('/logout', function(req, res, next) {
         req.logout();
         res.redirect('/');
@@ -52,11 +92,19 @@ const setupAuth = (app) => {
             failureRedirect: '/login'
         }),
         (req, res) => {
-            res.redirect('/');
-        }
-    )
-}
+            res.redirect('/app');
+        })
 
+    app.post('/login', passport.authenticate('local', 
+        {
+            failureRedirect: '/login?error=invalid password'  
+        }),
+        function(req, res) {
+            res.redirect('/app');
+        }
+    );
+
+};
 
 const ensureAuthenticated  = (req, res, next) => {
     if (req.isAuthenticated()) {
