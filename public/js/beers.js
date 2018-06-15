@@ -9,8 +9,10 @@ class Beers {
         
         beerHTML += '<div class="beer card">';
         beerHTML += '<div class="card-body">';
-        beerHTML += '<h5  class="card-title td">'+ this.beer.beer_name +'</h5>';
-        beerHTML += '<h6 class="card-subtitle mb-2 text-muted td">'+ this.beer.brewery_name +'</h6>';
+        beerHTML += '<h4 class="card-title td">'+ this.beer.beer_name +'</h4>';
+        beerHTML += ' <i class="fas fa-beer"></i>';
+        beerHTML += '<h5 class="card-subtitle td">'+ this.beer.brewery_name +'</h5>';
+        beerHTML += ' <i class="fas fa-beer"></i>';
         beerHTML += '<a href="https://www.beeradvocate.com' + this.beer.beer_url + '" target="_blank">View on BeerAdvocate</a>';
         beerHTML += '</div>';
         beerHTML += '</div>';

@@ -9,10 +9,10 @@ router.get('/', function(req, res, next) {
   });
 });
 
-router.get('/favorites', function(req, res, next) {
-  res.render('favorites', {
-    body: 'app'
-  });
-});
+// router.get('/favorites', function(req, res, next) {
+//   res.render('favorites', {
+//     body: 'app'
+//   });
+// });
 
 module.exports = router;

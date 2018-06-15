@@ -6,59 +6,59 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
             <ul class="navbar-nav">
                 <li>
-                    <h1>{{user.github_id}}</h1>
+                    <a class="nav-link" href="/">HOME</a>
                 </li>
                 <li>
-                    <a href="/app/favorites" class="nav-link">FAVORITES</a>
+                    <a class="nav-link" href="/favorites">FAVORITES</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">LOGOUT</a>
                 </li>
             </ul>
         </div>
-    </nav>
-    <div class="container-fluid full-height">
-        <div class="row h-100">
-            <div class="col-lg-9 p-0">
-                <div id="map"></div>
-            </div>
-            <div class="col-lg-3 mt-3">
-                <form>
-                    <input id="myInput" onkeyup="search()" class="form-control" type="search" name="beermesearch" placeholder="Find a brew...">
-                </form>
-                <div id="mySidebar" class="search-results"></div>
-            </div>
+</nav>
+<div class="container-fluid full-height">
+    <div class="row h-100">
+        <div class="col-lg-9 p-0">
+            <div id="map"></div>
+        </div>
+        <div class="col-lg-3 mt-3">
+            <form>
+                <input id="myInput" onkeyup="search()" class="form-control" type="search" name="beermesearch" placeholder="Find a brew...">
+            </form>
+            <div id="mySidebar" class="search-results"></div>
         </div>
     </div>
-    <script>
-        function search() {
-            var input, filter, sidebar, card, td, td2;
-            input = document.getElementById("myInput");
-            filter = input.value.toUpperCase();
-            sidebar = document.getElementById("mySidebar");
-            card = sidebar.getElementsByClassName("beer");
-            displayBreweryArray = [];
+</div>
+<script>
+    function search() {
+        var input, filter, sidebar, card, td, td2;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        sidebar = document.getElementById("mySidebar");
+        card = sidebar.getElementsByClassName("beer");
+        displayBreweryArray = [];
 
-            // Loop through all sidebar cards, and hide those who don't match the search query
-            for (let i = 0; i < card.length; i++) {
-                td = card[i].getElementsByClassName("td")[0];
-                td2 = card[i].getElementsByClassName("td")[1];
-                if (td) {
-                    if (td.innerHTML.toUpperCase().indexOf(filter) > -1 || td2.innerHTML.toUpperCase().indexOf(filter) > -1 ) {
-                        card[i].style.display = "";
-                    } else {
-                        card[i].style.display = "none";
-                    };
+        // Loop through all sidebar cards, and hide those who don't match the search query
+        for (let i = 0; i < card.length; i++) {
+            td = card[i].getElementsByClassName("td")[0];
+            td2 = card[i].getElementsByClassName("td")[1];
+            if (td) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1 || td2.innerHTML.toUpperCase().indexOf(filter) > -1 ) {
+                    card[i].style.display = "";
+                } else {
+                    card[i].style.display = "none";
                 };
             };
+        };
 
-            // for (let v = 0; v < card.length; v++) {
-            //     if (card[v].style.display == "") {
-            //      console.log(card[v])
-            //     }
+        // for (let v = 0; v < card.length; v++) {
+        //     if (card[v].style.display == "") {
+        //      console.log(card[v])
+        //     }
                 
-            // };
+        // };
             
 
-        };
-    </script>
+    };
+</script>
