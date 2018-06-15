@@ -17,39 +17,43 @@
 <div class="container login">
     <h1>Log in</h1>
     <div class="login-form">
-        <form>
+        {{#if error}}
+        <h1>{{error}}</h1>
+        {{/if}}
+        <form action="/login" method="POST">
             <div class="form-group">
                 <label for="exampleInputEmail1">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
             </div>
             <div class="form-group">
                 <label for="exampleInputPassword1">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
             </div>
             <div class="form-check">
                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
                 <label class="form-check-label" for="exampleCheck1">Remember me</label>
             </div>
             <a href="/app">
-                <button type="button" class="btn btn-primary btn-submit">Submit</button>
+                <button type="submit" class="btn btn-primary btn-submit">Submit</button>
             </a>
         </form>
     </div>
 
     <!-- Other logins -->
-
     <div class="other-logins">
-        <div class="facebook">
-            <a href="/app">
-                <button type="button" class="btn btn-lg">Login with Facebook</button>
+        <div class="github">
+            <a href="/login/github">
+                <button type="button" class="btn btn-lg">Login with GitHub</button>
             </a>
         </div>
-
-        <div class="google">
+        {{!-- <div class="google">
             <a href="/app">
                 <button type="button" class="btn btn-lg">Login with Google</button>
             </a>
-        </div>
+        </div>  --}}
+
+        
+        
 
     </div>
 </div>

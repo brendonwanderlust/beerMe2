@@ -7,10 +7,9 @@ var logger = require('morgan');
 var models = require('./models');
 var hbs = require('express-handlebars');
 
-
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-// const setupAuth = require('./auth') //i added this
+const setupAuth = require('./auth') //g: uncommented this
 
 var appRouter = require('./routes/app');
 var favRouter = require('./routes/favorites');
@@ -28,7 +27,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// setupAuth(app);
+setupAuth(app); //g: uncommented
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
