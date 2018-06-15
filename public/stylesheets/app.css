@@ -15,9 +15,12 @@ body.page-app svg {
 }
 
 .card-subtitle {
-    color: red;
+    color: goldenrod;
 }
 
+#craft-beer, #craft-brewery {
+    width: 24px;
+}
 .beer {
     margin-top: 1rem;
 }
