@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const dotenv = require('dotenv');
 
 var models = require('./models');
 var hbs = require('express-handlebars');
@@ -14,6 +15,7 @@ const setupAuth = require('./auth') //g: uncommented this
 var appRouter = require('./routes/app');
 var favRouter = require('./routes/favorites');
 
+dotenv.load();
 var app = express();
 
 // view engine setup
